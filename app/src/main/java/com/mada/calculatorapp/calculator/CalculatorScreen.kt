@@ -50,7 +50,7 @@ fun CalculatorScreen(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             val buttonRows = listOf(
-                listOf("AC" to Color.DarkGray, "Del" to Color.DarkGray, "%" to Color.DarkGray, "÷" to Color.DarkGray),
+                listOf("AC" to Color.DarkGray, "Del" to Color.DarkGray, "%" to Orange, "÷" to Orange),
                 listOf("7" to Color.DarkGray, "8" to Color.DarkGray, "9" to Color.DarkGray, "×" to Orange),
                 listOf("4" to Color.DarkGray, "5" to Color.DarkGray, "6" to Color.DarkGray, "-" to Orange),
                 listOf("1" to Color.DarkGray, "2" to Color.DarkGray, "3" to Color.DarkGray, "+" to Orange),
