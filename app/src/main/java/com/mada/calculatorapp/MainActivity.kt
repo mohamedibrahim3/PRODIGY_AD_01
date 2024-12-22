@@ -29,6 +29,14 @@ class MainActivity : ComponentActivity() {
             CalculatorAppTheme {
                 val viewModel = viewModel<CalculatorViewModel>()
                 val state = viewModel.state
+                CalculatorScreen(
+                    state = state,
+                    onAction = viewModel::onAction,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black)
+                        .padding(16.dp)
+                )
             }
         }
     }
