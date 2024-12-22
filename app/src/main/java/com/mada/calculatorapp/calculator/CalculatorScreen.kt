@@ -23,29 +23,35 @@ fun CalculatorScreen(
     modifier: Modifier = Modifier,
     onAction: (CalculatorAction) -> Unit
 ) {
-    Box(modifier = modifier.fillMaxSize().background(MediumGray)) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(MediumGray),
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        Spacer(modifier = Modifier.height(32.dp)) // Adds space at the top
+
+        Text(
+            text = state.num1 + (state.operation?.symbol ?: "") + state.num2,
+            textAlign = TextAlign.End,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            fontWeight = FontWeight.Light,
+            fontSize = 80.sp,
+            color = Color.White,
+            maxLines = 2
+        )
+
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Text(
-                text = state.num1 + (state.operation?.symbol ?: "") + state.num2,
-                textAlign = TextAlign.End,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 32.dp),
-                fontWeight = FontWeight.Light,
-                fontSize = 80.sp,
-                color = Color.White,
-                maxLines = 2
-            )
-
             val buttonRows = listOf(
-                listOf("AC" to Color.LightGray, "Del" to Color.LightGray, "/" to Color.LightGray),
-                listOf("7" to Color.DarkGray, "8" to Color.DarkGray, "9" to Color.DarkGray, "*" to Orange),
+                listOf("AC" to Color.DarkGray, "Del" to Color.DarkGray, "%" to Color.DarkGray, "÷" to Color.DarkGray),
+                listOf("7" to Color.DarkGray, "8" to Color.DarkGray, "9" to Color.DarkGray, "×" to Orange),
                 listOf("4" to Color.DarkGray, "5" to Color.DarkGray, "6" to Color.DarkGray, "-" to Orange),
                 listOf("1" to Color.DarkGray, "2" to Color.DarkGray, "3" to Color.DarkGray, "+" to Orange),
                 listOf("0" to Color.DarkGray, "." to Color.DarkGray, "=" to Orange)
@@ -65,10 +71,11 @@ fun CalculatorScreen(
                                 when (symbol) {
                                     "AC" -> onAction(CalculatorAction.Clear)
                                     "Del" -> onAction(CalculatorAction.Delete)
-                                    "/" -> onAction(CalculatorAction.Operation(CalculatorOperation.Divide))
+                                    "÷" -> onAction(CalculatorAction.Operation(CalculatorOperation.Divide))
                                     "*" -> onAction(CalculatorAction.Operation(CalculatorOperation.Multiply))
                                     "-" -> onAction(CalculatorAction.Operation(CalculatorOperation.Subtract))
                                     "+" -> onAction(CalculatorAction.Operation(CalculatorOperation.Add))
+                                    "%" -> onAction(CalculatorAction.Operation(CalculatorOperation.Percent))
                                     "=" -> onAction(CalculatorAction.Calculate)
                                     "." -> onAction(CalculatorAction.Decimal)
                                     else -> onAction(CalculatorAction.Number(symbol.toIntOrNull() ?: 0))
@@ -89,6 +96,8 @@ fun CalculatorButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
+    val fontSize = if (symbol == "AC" || symbol == "Del") 18.sp else 28.sp
+
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(containerColor = color),
@@ -99,7 +108,7 @@ fun CalculatorButton(
     ) {
         Text(
             text = symbol,
-            fontSize = 24.sp,
+            fontSize = fontSize,
             color = Color.White,
             fontWeight = FontWeight.Bold
         )

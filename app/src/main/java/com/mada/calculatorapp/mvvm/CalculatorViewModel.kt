@@ -91,6 +91,7 @@ class CalculatorViewModel: ViewModel() {
                 is CalculatorOperation.Subtract -> number1 - number2
                 is CalculatorOperation.Divide -> number1 / number2
                 is CalculatorOperation.Multiply -> number1 * number2
+                is CalculatorOperation.Percent -> number1 % number2
                 null -> return
             }
             state = state.copy(
