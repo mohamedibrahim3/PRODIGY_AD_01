@@ -40,7 +40,7 @@ fun CalculatorScreen(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
-                text = state.num1 + (state.operation ?: "") + state.num2,
+                text = state.num1 + (state.operation?.symbol ?: "") + state.num2,
                 textAlign = TextAlign.End,
                 modifier = Modifier
                     .fillMaxWidth()
