@@ -20,6 +20,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mada.calculatorapp.calculator.CalculatorScreen
 import com.mada.calculatorapp.mvvm.CalculatorViewModel
 import com.mada.calculatorapp.ui.theme.CalculatorAppTheme
+import com.mada.calculatorapp.ui.theme.MediumGray
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +34,7 @@ class MainActivity : ComponentActivity() {
                     state = state,
                     onAction = viewModel::onAction,
                     modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.Black)
+                        .background(MediumGray)
                         .padding(16.dp)
                 )
             }
@@ -45,5 +45,4 @@ class MainActivity : ComponentActivity() {
 //@Preview(showBackground = true, name = "Calculator Preview")
 //@Composable
 //fun PreviewCalculator() {
-//    CalculatorScreen() // استدعاء شاشة الآلة الحاسبة هنا لعرضها في الـ Preview
 //}
