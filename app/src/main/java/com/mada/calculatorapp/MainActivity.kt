@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     onAction = viewModel::onAction,
                     modifier = Modifier
                         .background(MediumGray)
-                        .padding(16.dp)
+                        .padding(8.dp)
                 )
             }
         }

@@ -72,7 +72,7 @@ fun CalculatorScreen(
                                     "AC" -> onAction(CalculatorAction.Clear)
                                     "Del" -> onAction(CalculatorAction.Delete)
                                     "÷" -> onAction(CalculatorAction.Operation(CalculatorOperation.Divide))
-                                    "*" -> onAction(CalculatorAction.Operation(CalculatorOperation.Multiply))
+                                    "×" -> onAction(CalculatorAction.Operation(CalculatorOperation.Multiply))
                                     "-" -> onAction(CalculatorAction.Operation(CalculatorOperation.Subtract))
                                     "+" -> onAction(CalculatorAction.Operation(CalculatorOperation.Add))
                                     "%" -> onAction(CalculatorAction.Operation(CalculatorOperation.Percent))
