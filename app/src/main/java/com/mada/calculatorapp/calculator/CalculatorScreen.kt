@@ -1,21 +1,25 @@
 package com.mada.calculatorapp.calculator
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mada.calculatorapp.common.buttonRows
+import com.mada.calculatorapp.componants.CalculatorButton
 import com.mada.calculatorapp.ui.theme.MediumGray
-import com.mada.calculatorapp.ui.theme.Orange
 
 @Composable
 fun CalculatorScreen(
@@ -49,13 +53,6 @@ fun CalculatorScreen(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            val buttonRows = listOf(
-                listOf("AC" to Color.DarkGray, "Del" to Color.DarkGray, "%" to Orange, "÷" to Orange),
-                listOf("7" to Color.DarkGray, "8" to Color.DarkGray, "9" to Color.DarkGray, "×" to Orange),
-                listOf("4" to Color.DarkGray, "5" to Color.DarkGray, "6" to Color.DarkGray, "-" to Orange),
-                listOf("1" to Color.DarkGray, "2" to Color.DarkGray, "3" to Color.DarkGray, "+" to Orange),
-                listOf("0" to Color.DarkGray, "." to Color.DarkGray, "=" to Orange)
-            )
 
             buttonRows.forEach { row ->
                 Row(
@@ -66,7 +63,9 @@ fun CalculatorScreen(
                         CalculatorButton(
                             symbol = symbol,
                             color = color,
-                            modifier = if (symbol == "0") Modifier.weight(2f) else Modifier.weight(1f),
+                            modifier = if (symbol == "0") Modifier.weight(2f) else Modifier.weight(
+                                1f
+                            ),
                             onClick = {
                                 when (symbol) {
                                     "AC" -> onAction(CalculatorAction.Clear)
@@ -78,7 +77,11 @@ fun CalculatorScreen(
                                     "%" -> onAction(CalculatorAction.Operation(CalculatorOperation.Percent))
                                     "=" -> onAction(CalculatorAction.Calculate)
                                     "." -> onAction(CalculatorAction.Decimal)
-                                    else -> onAction(CalculatorAction.Number(symbol.toIntOrNull() ?: 0))
+                                    else -> onAction(
+                                        CalculatorAction.Number(
+                                            symbol.toIntOrNull() ?: 0
+                                        )
+                                    )
                                 }
                             }
                         )
@@ -89,28 +92,3 @@ fun CalculatorScreen(
     }
 }
 
-@Composable
-fun CalculatorButton(
-    symbol: String,
-    color: Color,
-    modifier: Modifier = Modifier,
-    onClick: () -> Unit
-) {
-    val fontSize = if (symbol == "AC" || symbol == "Del") 18.sp else 28.sp
-
-    Button(
-        onClick = onClick,
-        colors = ButtonDefaults.buttonColors(containerColor = color),
-        shape = RoundedCornerShape(16.dp),
-        modifier = modifier
-            .aspectRatio(if (symbol == "0") 2f else 1f)
-            .height(64.dp)
-    ) {
-        Text(
-            text = symbol,
-            fontSize = fontSize,
-            color = Color.White,
-            fontWeight = FontWeight.Bold
-        )
-    }
-}
